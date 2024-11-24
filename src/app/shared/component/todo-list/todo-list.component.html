@@ -1,0 +1,22 @@
+<ul class="list-group" *ngIf="todosArr; else noTodos">
+    <li 
+    *ngFor="let todo of todosArr"
+    class="list-group-item d-flex justify-content-between">
+        <strong class="align-self-center">{{todo.todoItem}}</strong>
+        <p class="m-0">
+            <button mat-icon-button color="primary">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button 
+            (click)="onTodoRemove(todo.todoId)"
+            mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </p>
+    </li>
+</ul>
+<ng-template #noTodos>
+    <p class="alert alert-info">
+        No Todos!!!
+    </p>
+</ng-template>

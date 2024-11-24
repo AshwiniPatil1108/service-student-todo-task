@@ -1,0 +1,128 @@
+<form #stdForm="ngForm" (ngSubmit)="onStdAdd()">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="m-0">Add Student</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="fname">First Name*</label>
+                <input 
+                minlength="4"
+                maxlength="12"
+                name="fname"
+                required
+                ngModel
+                #fname="ngModel"
+                type="text"
+                class="form-control"
+                id="fname"
+                pattern="[a-zA-Z]+">
+                <strong 
+                *ngIf="stdFirstNameMaxFlag"
+                class="text-danger">
+                  Maxlength of fname should be 12 character
+                </strong>
+                <strong class="text-danger" 
+                *ngIf="fname.touched && fname.hasError('minlength')">
+                  minlength of fname should be 8 character
+                </strong>
+                 <strong class="text-danger" 
+                *ngIf="fname.touched && fname.hasError('required')">
+                  fname is a required field
+                </strong>
+                <strong 
+                *ngIf="fname.dirty && fname.hasError('pattern')"
+                class="text-danger">
+                   Invalid pattern
+                </strong>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name*</label>
+                <input 
+                minlength="4"
+                maxlength="12"
+                name="lname"
+                required
+                ngModel
+                #lname="ngModel"
+                type="text"
+                class="form-control"
+                id="lname"
+                pattern="[a-zA-Z]+">
+      
+                <strong 
+                *ngIf="stdFirstNameMaxFlag"
+                class="text-danger">
+                  Maxlength of lname should be 12 character
+                </strong>
+                
+                <strong class="text-danger" 
+                *ngIf="lname.touched && lname.hasError('minlength')">
+                  minlength of lname should be 8 character
+                </strong>
+      
+                <strong class="text-danger" 
+                *ngIf="lname.touched && lname.hasError('required')">
+                  lname is a required field
+                </strong>
+      
+                <strong 
+                *ngIf="lname.dirty && lname.hasError('pattern')"
+                class="text-danger">
+                   Invalid pattern
+                </strong>
+            </div>
+            <div class="form-group">
+                <label for="email">Email*</label>
+                <input 
+                ngModel 
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                required 
+                #email="ngModel"
+                name="email"
+                type="text" 
+                id="email" 
+                class="form-control">
+
+                <strong class="text-danger"
+                *ngIf="email.touched && email.hasError('required')">
+                    Email is required field.
+                </strong>
+                <strong class="text-danger"
+                *ngIf="email.dirty && email.hasError('pattern')">
+                    Email pattern is invalid
+                </strong>
+                
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <input 
+                name="contact"
+                required
+                ngModel
+                #contact="ngModel"
+                type="text"
+                class="form-control"
+                id="contact"
+                pattern="^[0-9]{10}$">
+                <strong class="text-danger"
+                *ngIf="contact.touched && contact.hasError('required')">
+                    contact is required field.
+                </strong>
+                <strong class="text-danger"
+                *ngIf="contact.dirty && contact.hasError('pattern')">
+                    contact pattern is invalid
+                </strong>
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <button type="submit"
+            [disabled]="stdForm.invalid"
+            mat-raised-button color="primary">
+            Add Student
+            </button>
+
+        </div>
+    </div>
+</form>
+
